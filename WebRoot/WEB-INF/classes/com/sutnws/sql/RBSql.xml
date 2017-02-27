@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="Demo">
+    <typeAlias alias="renyuanBean" type="com.sutnws.bean.renyuanBean" />
+     <insert id="baoming" parameterClass="renyuanBean">
+       insert
+       into 
+       zx_renyuan
+       (xuehao,name,sex,banji,bumenmain,bumen_1,bumen_2,pingjiamain,pingjia_1,pingjia_2,zhuangtai,introduce,touxiang,baomingid,qq,tel)
+       value
+       (#xuehao#,#name#,#sex#,#banji#,#bumenmain#,#bumen_1#,#bumen_2#,#pingjiamain#,#pingjia_1#,#pingjia_2#,#zhuangtai#,#introduce#,#touxiang#,#baomingid#,#qq#,#tel#)
+     </insert>     
+     <select id="renyuan" parameterClass="renyuanBean" resultClass="renyuanBean">
+        select
+        *
+        from
+        zx_renyuan     
+     </select>    
+     
+     <select id="lschuli" parameterClass="renyuanBean" resultClass="renyuanBean">
+        select
+		*
+		from
+		zx_renyuan
+		where
+		zhuangtai=#zhuangtai#
+     </select>
+     
+     <!-- 已面试人员 -->
+     <select id="yms_1" parameterClass="renyuanBean" resultClass="renyuanBean">
+        select
+		*
+		from
+		zx_renyuan
+		where
+		not pingjiamain=''
+     </select>
+     <select id="yms_2" parameterClass="renyuanBean" resultClass="renyuanBean">
+        select
+		*
+		from
+		zx_renyuan
+		where
+		not pingjia_1=''
+     </select>
+     <select id="yms_3" parameterClass="renyuanBean" resultClass="renyuanBean">
+        select
+		*
+		from
+		zx_renyuan
+		where
+		not pingjia_2=''
+     </select>
+     <select id="cunzai" parameterClass="renyuanBean" resultClass="renyuanBean">
+        select
+        *
+        from
+        zx_renyuan
+        where
+        tel=#tel#     
+     </select>    
+     <delete id="deleterenyuan" parameterClass="renyuanBean">
+        delete
+        from
+        zx_renyuan
+        where
+        tel=#tel#
+     </delete>
+     <update id="updaterenyuan" parameterClass="renyuanBean">
+        update
+        zx_renyuan
+        set
+        pingjiamain=#pingjiamain#,
+        zhuangtai=#zhuangtai#
+        where
+        tel=#tel#        
+     </update>  
+     <update id="qiangren" parameterClass="renyuanBean">
+         update
+         zx_renyuan
+         set         
+         bumenmain=#bumenmain#,
+         zhuangtai=#zhuangtai#
+         where
+         tel=#tel# 
+     </update>     
+     <update id="pj_1" parameterClass="renyuanBean">
+         update
+         zx_renyuan
+         set
+         pingjia_1=#pingjia_1#
+         where
+         tel=#tel#
+     </update>     
+     <update id="adminupdate" parameterClass="renyuanBean">
+         update
+         zx_renyuan
+         set
+         name=#name#,
+         xuehao=#xuehao#,
+         sex=#sex#,
+         banji=#banji#,
+         pingjiamain=#pingjiamain#,
+         pingjia_1=#pingjia_1#,
+         pingjia_2=#pingjia_2#
+         where
+         tel=#tel#
+     </update>     
+     <update id="upzhuangtai" parameterClass="renyuanBean">
+         update
+         zx_renyuan
+         set
+         zhuangtai=#zhuangtai#
+         ,
+         pingjiamain=#pingjiamain#
+         where
+         tel=#tel#
+     </update>     
+     <update id="pj_2" parameterClass="renyuanBean">
+         update
+         zx_renyuan
+         set
+         pingjia_2=#pingjia_2#
+         where
+         tel=#tel#
+     </update>     
+     <!--统计部分  -->
+     <select id="bumenrenshu" resultClass="java.lang.Integer">
+          select count(*) 
+          from 
+          zx_renyuan 
+          where
+          bumenmain=#bumenmain#           
+     </select>     
+     <select id="bumenbaoming" resultClass="java.lang.Integer">
+          select count(*) 
+          from 
+          zx_renyuan 
+          where
+          bumenmain=#bumenmain# 
+          and 
+          not zhuangtai=#zhuangtai#
+     </select>     
+     <select id="bumenluqu" resultClass="java.lang.Integer">
+          select count(*) 
+          from 
+          zx_renyuan 
+          where
+          bumenmain=#bumenmain# 
+          and 
+          zhuangtai=#zhuangtai#
+     </select>     
+     <select id="Allsex" resultClass="java.lang.Integer">
+          select count(*) 
+          from 
+          zx_renyuan 
+          where
+          sex=#sex#          
+     </select>     
+     <select id="Bumensex" resultClass="java.lang.Integer">
+          select count(*) 
+          from 
+          zx_renyuan 
+          where
+          bumenmain=#bumenmain# 
+          and 
+          sex=#sex#          
+     </select>
+     <select id="chazhao" parameterClass="renyuanBean" resultClass="renyuanBean">
+          select 
+          * 
+          from 
+          zx_renyuan 
+          where
+          tel=#tel#                    
+     </select>
+     <select id="guanli" parameterClass="renyuanBean">
+         update
+         zx_renyuan
+         set
+         name=#name#,
+         sex=#sex#,
+         banji=#banji#,
+         bumenmain=#bumenmain#,
+         bumen_1=#bumen_1#,
+         bumen_2=#bumen_2#,
+         qq=#qq#
+         where
+         tel=#tel# 
+     </select>     
+     <update id="cancel" parameterClass="renyuanBean">
+        update
+        zx_renyuan
+        set
+        zhuangtai=#zhuangtai#
+        where
+        tel=#tel#
+     </update>
+    
+</sqlMap>

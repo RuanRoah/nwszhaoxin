@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=src/com/sutnws/action/bumen/struts-bumen.xml,WebRoot/WEB-INF/pages/baoming.jsp,src/com/sutnws/tool,WebRoot/WEB-INF/web.xml,src/com/sutnws/action/home/struts-home.xml,src/struts.xml,WebRoot/js,src/com/sutnws/action/index/baomingAction.java,WebRoot/assets,src/com/sutnws/action/bumen/bumenAction.java,src/com/sutnws/action/admin/struts-admin.xml
+validator.Unchecked=

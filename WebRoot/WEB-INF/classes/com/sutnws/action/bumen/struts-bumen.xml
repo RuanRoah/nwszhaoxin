@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.action.extension" value="roah" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <package name="bumen" extends="struts-default">        
+        <action name="bumen*" class="com.sutnws.action.bumen.bumenAction" method="{1}">
+            <result name="nologin">
+                /WEB-INF/login.jsp
+            </result>
+            <result name="success">
+                /WEB-INF/bumen-pages/bumen-renyuan.jsp
+            </result>
+            <result name="insert" type="redirectAction">
+                bumenexecute.roah
+            </result>
+            <result name="yizhiyuan">
+                /WEB-INF/bumen-pages/bumen-baoming.jsp
+            </result>
+             <result name="erzhiyuan">
+                /WEB-INF/bumen-pages/bumen-second.jsp
+             </result>
+             <result name="sanzhiyuan">
+                /WEB-INF/bumen-pages/bumen-third.jsp
+             </result>
+             
+             <result name="luqu">
+                /WEB-INF/bumen-pages/bumen-first.jsp
+             </result>
+             <result name="beixuan">
+                /WEB-INF/bumen-pages/bumen-beixuan.jsp
+             </result>
+             <result name="chazhao">
+                /WEB-INF/bumen-pages/bumen-chazhao.jsp
+             </result>
+             <result name="delete" type="redirectAction">
+                bumenyizhiyuan
+             </result>
+             <result name="queding" type="redirectAction">
+                bumenluqu
+             </result>
+             <result name="pingjia_1" type="redirectAction">
+                bumenerzhiyuan
+             </result>
+             <result name="pingjia_2" type="redirectAction">
+                bumensanzhiyuan
+             </result>
+             <result name="meizhaodao">
+                /WEB-INF/bumen-pages/bumen-none.jsp
+             </result>
+             <result name="toexcel">
+                /WEB-INF/bumen-pages/bumen-excel.jsp
+             </result>
+             <result name="yimianshi">
+               /WEB-INF/bumen-pages/bumen-yimianshi.jsp
+             </result>
+             <result name="cancel" type="redirectAction">
+               bumenluqu
+             </result>            
+        </action>
+    </package>
+</struts>

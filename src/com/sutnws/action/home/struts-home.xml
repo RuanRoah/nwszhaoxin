@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.action.extension" value="roah" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <package name="home" extends="struts-default">        
+        <action name="home*" class="com.sutnws.action.home.homeAction" method="{1}">
+            <result name="success">
+                /WEB-INF/pages/Home.jsp
+            </result> 
+            <result name="nologin">
+                /WEB-INF/login.jsp
+            </result>                    
+            <result name="onepage">
+                /WEB-INF/pages/onepage.jsp
+            </result>
+        </action>        
+    </package>
+</struts>

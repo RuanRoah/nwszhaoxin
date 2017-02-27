@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+<sqlMap namespace="login">
+    <typeAlias alias="UBLogin" type="com.sutnws.bean.UserBean" />
+     
+    <select id="querylogin" parameterClass="UBLogin" resultClass="UBLogin">
+       select 
+       *
+       from
+       zx_account
+       where       
+       username=#username# 
+     </select>
+      <!-- <select id="queryshenfen" parameterClass="LoginBean" resultClass="LoginBean">
+       select 
+       *
+       from
+       shenfen
+       where
+       username=#username#       
+     </select>
+     <select id="qdshenfen" parameterClass="LoginBean" resultClass="LoginBean">
+       select
+       *
+       from
+       quanxian
+       where
+       id=#id#
+     </select> -->
+</sqlMap>

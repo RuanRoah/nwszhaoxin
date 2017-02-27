@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.action.extension" value="roah" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <include file="com/sutnws/action/home/struts-home.xml"></include>
+    <package name="admin" extends="struts-default">        
+        <action name="admin*" class="com.sutnws.action.admin.adminAction" method="{1}">
+            <result name="nologin">
+                /WEB-INF/login.jsp
+            </result>
+            <result name="qiangren">
+            	/WEB-INF/admin-pages/admin-conflict.jsp
+            </result>
+            <result name="result">
+            	/WEB-INF/admin-pages/admin-renyuan.jsp
+            </result>            
+            <result name="count">
+                /WEB-INF/admin-pages/admin-data.jsp
+            </result>
+            <result name="update" type="redirectAction">
+                adminresult
+            </result>
+            <result name="qiangrendo" type="redirectAction">
+                adminqiangren
+            </result>
+            <result name="chuli">
+               /WEB-INF/admin-pages/admin-daichuli.jsp
+            </result>
+            <result name="chulido" type="redirectAction">
+                adminchuli
+            </result>            
+        </action>
+    </package>
+</struts>

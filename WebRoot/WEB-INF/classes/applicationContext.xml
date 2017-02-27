@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-lazy-init="false">
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:com/sutnws/conf/sqlMapping.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<property name="maxActive">
+			<value>20</value>
+		</property>
+		<property name="maxIdle" value="25" />
+		<property name="minIdle" value="10" />
+		<property name="maxWait" value="3000" />
+		<property name="validationQuery" value="select 1 from dual" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="300" />
+		<property name="logAbandoned" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="3000" />
+		<property name="numTestsPerEvictionRun" value="10" />
+		<property name="minEvictableIdleTimeMillis" value="3000" />
+	</bean>
+
+	<!-- ===================================== -->
+	<!-- Configuration for dao -->
+	<!-- ===================================== -->
+
+	<bean id="sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>classpath:com/sutnws/conf/sqlMapConfig.xml</value>
+		</property>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<!-- 数据库操作 -->
+	
+	
+	
+	<!-- 报名注册位置 -->
+	<bean id="baomingdao" class="com.sutnws.dao.baomingDao">
+	  <property name="dataSource">
+	     <ref bean="dataSource"/>
+	  </property>
+	  <property name="sqlMapClient">
+	     <ref local="sqlMapClient"/>
+	  </property>
+	</bean>
+	<bean id="baomingactive" class="com.sutnws.action.index.baomingAction">
+	  <property name="bd">
+	     <ref local="baomingdao"/>
+	  </property>
+	</bean>
+	
+	
+	
+	<!-- 菜单注册位置 -->
+	<bean id="homedao" class="com.sutnws.dao.homeDao">
+	  <property name="dataSource">
+	     <ref bean="dataSource"/>
+	  </property>
+	  <property name="sqlMapClient">
+	     <ref local="sqlMapClient"/>
+	  </property>
+	</bean>
+	<bean id="homeactive" class="com.sutnws.action.home.homeAction">
+	  <property name="hd">
+	     <ref local="homedao"/>
+	  </property>
+	</bean>
+	
+	
+	
+	<!-- 登录注册位置 -->
+	<bean id="logindao" class="com.sutnws.dao.loginDao">
+	  <property name="dataSource">
+	     <ref bean="dataSource"/>
+	  </property>
+	  <property name="sqlMapClient">
+	     <ref local="sqlMapClient"/>
+	  </property>
+	</bean>
+	<bean id="logindaoactive" class="com.sutnws.action.index.indexAction">
+	  <property name="ld">
+	     <ref local="logindao"/>
+	  </property>
+	</bean>
+	
+	<!-- 部门注册位置 -->
+	<bean id="bumendao" class="com.sutnws.dao.bumenDao">
+	  <property name="dataSource">
+	     <ref bean="dataSource"/>
+	  </property>
+	  <property name="sqlMapClient">
+	     <ref local="sqlMapClient"/>
+	  </property>
+	</bean>
+	<bean id="daobumen" class="com.sutnws.action.bumen.bumenAction">
+	  <property name="bd">
+	     <ref local="bumendao"/>
+	  </property>
+	</bean>
+	<bean id="daobmadmin" class="com.sutnws.action.admin.adminAction">
+	  <property name="bmd">
+	     <ref local="bumendao"/>
+	  </property>
+	</bean>
+	<bean id="adminbumen" class="com.sutnws.action.admin.adminAction">
+	  <property name="ad">
+	     <ref local="admindao"/>
+	  </property>
+	</bean>
+	
+	<!-- 管理员注册位置 -->
+	<bean id="admindao" class="com.sutnws.dao.adminDao">
+	  <property name="dataSource">
+	     <ref bean="dataSource"/>
+	  </property>
+	  <property name="sqlMapClient">
+	     <ref local="sqlMapClient"/>
+	  </property>
+	</bean>
+	
+	<bean id="daoadmin" class="com.sutnws.action.admin.adminAction">
+	  <property name="ad">
+	     <ref local="admindao"/>
+	  </property>
+	</bean>
+	
+	<!-- 统计位置 -->
+	<bean id="countdao" class="com.sutnws.dao.countDao">
+	  <property name="dataSource">
+	     <ref bean="dataSource"/>
+	  </property>
+	  <property name="sqlMapClient">
+	     <ref local="sqlMapClient"/>
+	  </property>
+	</bean>
+	<bean id="daocount" class="com.sutnws.action.admin.adminAction">
+	  <property name="cd_1">
+	     <ref local="countdao"/>
+	  </property>
+	</bean>	
+	<bean id="daocount_2" class="com.sutnws.action.bumen.bumenAction">
+	  <property name="cd">
+	     <ref local="countdao"/>
+	  </property>
+	</bean>	
+	<!--分割线 -->
+	
+</beans>

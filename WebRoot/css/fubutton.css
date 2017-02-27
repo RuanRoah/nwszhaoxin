@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+.fubutton1{
+float: left;
+height: 41px;
+background: #f5696c;
+width: 144px;
+position:relative;
+}
+.fubutton2{
+text-align:center;
+padding-top:12px;
+font-size:15px;
+font-weight:800
+}
+.inputstyle{
+    width: 144px;
+    height: 41px;
+    cursor: pointer;
+    font-size: 30px;
+    outline: medium none;
+    position: absolute;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    opacity:0; 
+    left:0px;
+    top: 0px;
+}

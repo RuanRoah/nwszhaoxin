@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" errorTracingEnabled="true" maxRequests="32"
+		maxSessions="10" maxTransactions="5" useStatementNamespaces="false" />
+	<sqlMap resource="com/sutnws/sql/RBSql.xml" />
+	<sqlMap resource="com/sutnws/sql/ROSql.xml" />
+	<sqlMap resource="com/sutnws/sql/USql.xml" />
+</sqlMapConfig>  

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.action.extension" value="roah" />
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.configuration.xml.reload" value="true"/>
+     <constant name="struts.custom.i18n.resources" value="app"></constant>
+     <include file="com/sutnws/action/admin/struts-admin.xml"></include>
+     <include file="com/sutnws/action/bumen/struts-bumen.xml"></include>
+     <include file="com/sutnws/action/home/struts-home.xml"></include>    
+     <package name="zhaoxin" extends="struts-default">        
+        <action name="baoming*" class="com.sutnws.action.index.baomingAction" method="{1}">
+             <result name="success">
+                /pages/baoming_new.jsp
+            </result>
+            <result name="bmsuccess">
+                /WEB-INF/pages/bmsuccess.jsp   
+            </result>
+            <result name="baomingerror">
+                /pages/baoming_new.jsp
+            </result>
+            <result name="cunzai">
+                /WEB-INF/pages/baoming_cunzai.jsp
+            </result>
+            <result name="tiaozhuanerror">
+                /WEB-INF/pages/baomingerror.jsp
+            </result>   
+            <result name="input">
+                /pages/baoming.jsp
+            </result>
+            <result name="yimianshi">
+            
+            </result>   
+            <!-- 配置拦截器限制上传文件类型及大小 -->
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/bmp,image/x-png,image/gif,image/jpeg</param>
+				<param name="maximumSize">2097152</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>   
+             
+           </action>           
+           <action name="login*" class="com.sutnws.action.index.indexAction" method="{1}">
+            <result name="success">
+                /WEB-INF/login.jsp
+            </result>
+            <result name="loginsuccess" type="redirectAction">
+            	homeexecute
+            </result>
+            <result name="loginerror" type="redirectAction">
+            	loginexecute
+            </result>            
+        </action>        
+        <action name="yanzhengma" class="com.sutnws.action.index.RandomAction">
+        	<result type="stream">        
+            <param name="contentType">image/jpeg</param>        
+            <param name="inputName">inputStream</param>        
+          </result>   
+        </action>
+    </package>
+</struts>
